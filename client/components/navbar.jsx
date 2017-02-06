@@ -41,18 +41,17 @@ export default class Navbar extends Component {
               iconElementLeft={<IconButton><NavigationClose /></IconButton>}
               iconElementRight={<div>
                                   <FlatButton
-                                    href="/about"
+                                    href="/"
                                     backgroundColor="#2196F3"
                                     labelPosition="before"
                                     label="GitHub Link"
-                                    primary={true}
                                     icon={<Home />}
                                   />
                                  <FlatButton
+                                    href="/about"
                                     label="Label before"
                                     backgroundColor="#2196F3"
                                     labelPosition="before"
-                                    secondary={true}
                                     icon={<ActionAndroid />}
                                   />
                                 </div>

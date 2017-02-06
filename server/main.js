@@ -5,3 +5,7 @@ Meteor.startup(() => {
  console.log('server running....');
  //Todos.insert({_id:"1",name:"frankie"});
 });
+
+Meteor.publish("todos", function () {
+	return Todos.find();
+});

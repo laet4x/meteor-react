@@ -45,7 +45,7 @@ class Content extends Component {
           <h1>Hello, {this.props.name}</h1>
           <ul> 
              {todos.map((todos) =>
-                <li key={todos._id}>{user.name}</li>
+                <li key={todos._id}>{todos.name}</li>
               )}
           </ul>
       </div>
@@ -55,6 +55,8 @@ class Content extends Component {
 };
 
 export default Content = createContainer(props => {
+  var todos = Meteor.subscribe('todos');
+  console.log(todos)
   // props here will have `main`, passed from the router
   // anything we return from this function will be *added* to it
   return {
