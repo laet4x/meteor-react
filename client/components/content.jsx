@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
+
 //import collection
 import Todos from '/imports/api/collection.js';
 
@@ -55,11 +56,10 @@ class Content extends Component {
 };
 
 export default Content = createContainer(props => {
-  var todos = Meteor.subscribe('todos');
-  console.log(todos)
+ var todos = Meteor.subscribe('todos');
   // props here will have `main`, passed from the router
   // anything we return from this function will be *added* to it
   return {
-    todos: Todos.find({}).fetch(),
+    todos: Todos.find().fetch()
   };
 }, Content);
