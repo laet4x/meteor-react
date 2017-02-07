@@ -1,0 +1,19 @@
+{
+  "name": "meteor-react",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "babel-runtime": "6.18.0",
+    "material-ui": "^0.16.7",
+    "meteor-node-stubs": "~0.2.0",
+    "mysql": "github:mysqljs/mysql",
+    "react": "15.4.2",
+    "react-addons-pure-render-mixin": "^15.4.2",
+    "react-dom": "15.4.2",
+    "react-mounter": "1.2.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "vue": "^2.1.10"
+  }
+}
