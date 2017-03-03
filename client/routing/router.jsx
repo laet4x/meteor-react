@@ -9,7 +9,7 @@ FlowRouter.route("/", {
   action () {
     mount(MainLayout, {
      content: () => (
-        <Content name="Ethan"/>
+        <Content name="Al"/>
       )
     });
   }
@@ -19,7 +19,7 @@ FlowRouter.route("/avatar", {
   action () {
     mount(MainLayout, {
      content: () => (
-        <Avatars name="Ethan"/>
+        <Avatars name="Al"/>
       )
     });
   }
@@ -29,7 +29,7 @@ FlowRouter.route("/badge", {
   action () {
     mount(MainLayout, {
      content: () => (
-        <BadgePage name="Ethan"/>
+        <BadgePage name="Al"/>
       )
     });
   }

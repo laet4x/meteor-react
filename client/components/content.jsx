@@ -24,6 +24,10 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 
+import MenuItem from 'material-ui/MenuItem';
+import IconMenu from 'material-ui/IconMenu';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
 }
@@ -74,6 +78,7 @@ class Content extends Component {
                   <TableHeaderColumn>ID</TableHeaderColumn>
                   <TableHeaderColumn>Name</TableHeaderColumn>
                   <TableHeaderColumn>Status</TableHeaderColumn>
+                  <TableHeaderColumn>Action</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody
@@ -86,6 +91,16 @@ class Content extends Component {
                   <TableRowColumn>{todos._id}</TableRowColumn>
                   <TableRowColumn >{todos.name}</TableRowColumn>
                   <TableRowColumn>Employed</TableRowColumn>
+                  <TableRowColumn> 
+                    <IconMenu
+                        iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                      >
+                        <MenuItem primaryText="Edit"  href="#" />
+                        <MenuItem primaryText="Delete" href="#" />
+                      </IconMenu>
+                    </TableRowColumn>
                 </TableRow>
                  )}
               </TableBody>
