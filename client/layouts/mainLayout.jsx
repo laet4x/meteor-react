@@ -1,9 +1,23 @@
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Navbar from '/client/components/navbar.jsx';
+import Footer from '/client/components/footer.jsx';
 
 injectTapEventPlugin();
-export const MainLayout = ({navbar, content, footer}) => (
+export const MainLayout = ({content}) => (
+		 <MuiThemeProvider>
+		  <div>
+		      <Navbar/>
+		      <div className="container">
+		         {content()}
+		      </div>
+		      <Footer/>
+		  </div>
+		 </MuiThemeProvider> 
+);
+
+/*export const MainLayout = ({navbar, content, footer}) => (
 		 <MuiThemeProvider>
 		  <div>
 		      {navbar}
@@ -13,4 +27,4 @@ export const MainLayout = ({navbar, content, footer}) => (
 		      {footer}
 		  </div>
 		 </MuiThemeProvider> 
-);
+);*/

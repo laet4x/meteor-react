@@ -18,6 +18,12 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
+//table
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+  from 'material-ui/Table';
+import TextField from 'material-ui/TextField';
+import Toggle from 'material-ui/Toggle';
+
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
 }
@@ -33,8 +39,17 @@ class Content extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name:this.props.name
-    }
+      fixedHeader: true,
+      fixedFooter: true,
+      stripedRows: false,
+      showRowHover: false,
+      selectable: true,
+      multiSelectable: false,
+      enableSelectAll: false,
+      deselectOnClickaway: true,
+      showCheckboxes: false,
+      height: '300px',
+    };
   }
 
 
@@ -44,11 +59,37 @@ class Content extends Component {
     return (
       <div>
           <h1>Hello, {this.props.name}</h1>
-          <ul> 
-             {todos.map((todos) =>
-                <li key={todos._id}>{todos.name}</li>
-              )}
-          </ul>
+          <Table
+            height={this.state.height}
+            fixedHeader={this.state.fixedHeader}
+            fixedFooter={this.state.fixedFooter}
+            selectable={this.state.selectable}
+            multiSelectable={this.state.multiSelectable}
+           >
+              <TableHeader
+                displaySelectAll={this.state.showCheckboxes}
+                adjustForCheckbox={this.state.showCheckboxes}
+                enableSelectAll={this.state.enableSelectAll}>
+                <TableRow>
+                  <TableHeaderColumn>ID</TableHeaderColumn>
+                  <TableHeaderColumn>Name</TableHeaderColumn>
+                  <TableHeaderColumn>Status</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody
+                displayRowCheckbox={this.state.showCheckboxes}
+                deselectOnClickaway={this.state.deselectOnClickaway}
+                showRowHover={this.state.showRowHover}
+                stripedRows={this.state.stripedRows}>
+               {todos.map((todos) =>
+                <TableRow key={todos._id}>
+                  <TableRowColumn>{todos._id}</TableRowColumn>
+                  <TableRowColumn >{todos.name}</TableRowColumn>
+                  <TableRowColumn>Employed</TableRowColumn>
+                </TableRow>
+                 )}
+              </TableBody>
+            </Table>
       </div>
     );
   }

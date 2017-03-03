@@ -2,31 +2,35 @@ import React from 'react';
 import {mount} from 'react-mounter';
 import {MainLayout} from '/client/layouts/mainLayout.jsx';
 import Content from '/client/components/content.jsx';
-import About from '/client/components/about.jsx';
-import Navbar from '/client/components/navbar.jsx';
-import Footer from '/client/components/footer.jsx';
-
+import Avatars from '/client/components/avatar.jsx';
+import BadgePage from '/client/components/badge.jsx';
 
 FlowRouter.route("/", {
   action () {
     mount(MainLayout, {
-      navbar: <Navbar/>,
      content: () => (
         <Content name="Ethan"/>
-      ),
-      footer: <Footer/>
+      )
     });
   }
 });
 
-FlowRouter.route("/about", {
+FlowRouter.route("/avatar", {
   action () {
     mount(MainLayout, {
-      navbar: <Navbar/>,
      content: () => (
-        <About name="Ethan"/>
-      ),
-      footer: <Footer/>
+        <Avatars name="Ethan"/>
+      )
+    });
+  }
+});
+
+FlowRouter.route("/badge", {
+  action () {
+    mount(MainLayout, {
+     content: () => (
+        <BadgePage name="Ethan"/>
+      )
     });
   }
 });
