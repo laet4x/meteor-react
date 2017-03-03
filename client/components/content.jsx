@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-
 //import collection
 import Todos from '/imports/api/collection.js';
 
@@ -37,10 +36,20 @@ const styles = {
     cursor: 'pointer',
   }
 };
+handleOpenMenu = () => {
+  this.setState({
+    openMenu: true,
+  });
+}
 
+handleOnRequestChange = (value) => {
+  this.setState({
+    openMenu: value,
+  });
+}
 class Content extends Component {
 
-  constructor(props){
+  constructor (props) {
     super(props);
     this.state = {
       fixedHeader: true,
@@ -56,24 +65,18 @@ class Content extends Component {
     };
   }
 
-
+  componentWillMount () {
+    console.log("Component Did Mount");
+  }
+  
   render() {
-    const { todos } = this.props;
+    const { todos, ready } = this.props;
     console.log(todos);
     return (
       <div>
           <h1>Hello, {this.props.name}</h1>
-          <Table
-            height={this.state.height}
-            fixedHeader={this.state.fixedHeader}
-            fixedFooter={this.state.fixedFooter}
-            selectable={this.state.selectable}
-            multiSelectable={this.state.multiSelectable}
-           >
-              <TableHeader
-                displaySelectAll={this.state.showCheckboxes}
-                adjustForCheckbox={this.state.showCheckboxes}
-                enableSelectAll={this.state.enableSelectAll}>
+          <Table>
+              <TableHeader>
                 <TableRow>
                   <TableHeaderColumn>ID</TableHeaderColumn>
                   <TableHeaderColumn>Name</TableHeaderColumn>
@@ -83,7 +86,6 @@ class Content extends Component {
               </TableHeader>
               <TableBody
                 displayRowCheckbox={this.state.showCheckboxes}
-                deselectOnClickaway={this.state.deselectOnClickaway}
                 showRowHover={this.state.showRowHover}
                 stripedRows={this.state.stripedRows}>
                {todos.map((todos) =>
@@ -96,6 +98,8 @@ class Content extends Component {
                         iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
                         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                         targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                        open={this.state.openMenu}
+                        onRequestChange={this.handleOnRequestChange}
                       >
                         <MenuItem primaryText="Edit"  href="#" />
                         <MenuItem primaryText="Delete" href="#" />
@@ -111,11 +115,10 @@ class Content extends Component {
 
 };
 
-export default Content = createContainer(props => {
- var todos = Meteor.subscribe('todos');
+export default Content = createContainer(() => {
   // props here will have `main`, passed from the router
   // anything we return from this function will be *added* to it
-  return {
-    todos: Todos.find().fetch()
+  return  {
+    todos: Todos.find().fetch(),
   };
 }, Content);

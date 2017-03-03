@@ -20,3 +20,5 @@ shell-server@0.2.1            # Server-side component of the `meteor shell` comm
 kadira:flow-router
 react-meteor-data
 twbs:bootstrap
+meteorhacks:subs-manager
+meteorhacks:fast-render

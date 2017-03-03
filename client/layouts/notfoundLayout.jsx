@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Navbar from '/client/components/navbar.jsx';
 import Footer from '/client/components/footer.jsx';
 
-export const MainLayout = ({content}) => (
+export const notfoundLayout = ({content}) => (
 		 <MuiThemeProvider>
 		  <div>
 		      <Navbar/>
