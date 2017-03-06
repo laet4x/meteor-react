@@ -8,6 +8,7 @@ import {notfoundLayout} from '/client/layouts/notfoundLayout.jsx';
 import Content from '/client/components/content.jsx';
 import Avatars from '/client/components/avatar.jsx';
 import BadgePage from '/client/components/badge.jsx';
+import ButtonPage from '/client/components/button.jsx';
 import NotFound from '/client/components/404.jsx';
 
 Subs = new SubsManager();
@@ -48,6 +49,16 @@ FlowRouter.route("/badge", {
     mount(MainLayout, {
      content: () => (
         <BadgePage name="Al"/>
+      )
+    });
+  }
+});
+
+FlowRouter.route("/button", {
+  action () {
+    mount(MainLayout, {
+     content: () => (
+        <ButtonPage name="Al"/>
       )
     });
   }

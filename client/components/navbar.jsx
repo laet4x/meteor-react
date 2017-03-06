@@ -8,13 +8,14 @@ import FontIcon from 'material-ui/FontIcon';
 import Home from 'material-ui/svg-icons/action/home';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 
-
+import Badge from 'material-ui/Badge';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 
 
 
@@ -52,7 +53,16 @@ export default class Navbar extends Component {
               onTitleTouchTap={handleTouchTap}
               iconElementRight=
                 {
-                  <div>
+                  <div> 
+                      <Badge
+                          badgeContent={10}
+                          secondary={true}
+                          badgeStyle={{top: 12, right: 12}}
+                        >
+                        <IconButton tooltip="Notifications">
+                          <NotificationsIcon />
+                        </IconButton>
+                      </Badge>
                     <IconMenu
                       iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
                       anchorOrigin={{horizontal: 'right', vertical: 'top'}}
@@ -61,7 +71,7 @@ export default class Navbar extends Component {
                       <MenuItem primaryText="Home"  href="/" />
                       <MenuItem primaryText="Avatar" href="/avatar" />
                       <MenuItem primaryText="Badge" href="/badge"/>
-                      <MenuItem primaryText="Help" />
+                      <MenuItem primaryText="Button" href="/button" />
                       <MenuItem primaryText="Sign out" />
                     </IconMenu>
                   </div>
