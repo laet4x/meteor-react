@@ -54,15 +54,6 @@ export default class Navbar extends Component {
               iconElementRight=
                 {
                   <div> 
-                      <Badge
-                          badgeContent={10}
-                          secondary={true}
-                          badgeStyle={{top: 12, right: 12}}
-                        >
-                        <IconButton tooltip="Notifications">
-                          <NotificationsIcon />
-                        </IconButton>
-                      </Badge>
                     <IconMenu
                       iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
                       anchorOrigin={{horizontal: 'right', vertical: 'top'}}
@@ -72,7 +63,7 @@ export default class Navbar extends Component {
                       <MenuItem primaryText="Avatar" href="/avatar" />
                       <MenuItem primaryText="Badge" href="/badge"/>
                       <MenuItem primaryText="Button" href="/button" />
-                      <MenuItem primaryText="Sign out" />
+                      <MenuItem primaryText="Login" href="/login" />
                     </IconMenu>
                   </div>
                   } 
