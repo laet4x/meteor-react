@@ -11,11 +11,6 @@ import Todos from '/imports/api/collection.js';
 //import materialUI
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
 
 //table
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
@@ -23,9 +18,24 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
 
+//icon
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+
+//svg icons
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import Close from 'material-ui/svg-icons/navigation/close';
+import CommunicationCall from 'material-ui/svg-icons/communication/call';
+import Message from 'material-ui/svg-icons/communication/message';
+
+import Snackbar from 'material-ui/Snackbar';
+
+
 
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
@@ -47,6 +57,13 @@ handleOnRequestChange = (value) => {
     openMenu: value,
   });
 }
+
+handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+};
+
 class Content extends Component {
 
   constructor (props) {
@@ -62,16 +79,26 @@ class Content extends Component {
       deselectOnClickaway: true,
       showCheckboxes: false,
       height: '300px',
+      open: false,
     };
   }
 
   componentWillMount () {
     console.log("Component Did Mount");
   }
+
+  componentDidUpdate(props){
+    const { todos, ready } = this.props;
+    if(todos.length){
+      this.setState({
+        open: true,
+      });
+    }
+  }
   
   render() {
     const { todos, ready } = this.props;
-    console.log(todos);
+
     return (
       <div>
           <h1>Hello, {this.props.name}</h1>
@@ -109,6 +136,12 @@ class Content extends Component {
                  )}
               </TableBody>
             </Table>
+            <Snackbar
+              open={this.state.open}
+              message="Table Updated"
+              autoHideDuration={2000}
+              onRequestClose={this.handleRequestClose}
+            />
       </div>
     );
   }
