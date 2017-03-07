@@ -35,8 +35,6 @@ import Message from 'material-ui/svg-icons/communication/message';
 
 import Snackbar from 'material-ui/Snackbar';
 
-
-
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
 }
@@ -57,6 +55,12 @@ handleOnRequestChange = (value) => {
     openMenu: value,
   });
 }
+
+handleRequestOpen = () => {
+    this.setState({
+      open: true,
+    });
+  };
 
 handleRequestClose = () => {
     this.setState({
@@ -87,18 +91,15 @@ class Content extends Component {
     console.log("Component Did Mount");
   }
 
-  componentDidUpdate(props){
-    const { todos, ready } = this.props;
-    if(todos.length){
-      this.setState({
-        open: true,
-      });
-    }
-  }
-  
+ componentWillReceiveProps(nextProps) {
+  console.log('update props');
+  this.setState({
+      open: true,
+    });
+ }
+ 
   render() {
     const { todos, ready } = this.props;
-
     return (
       <div>
           <h1>Hello, {this.props.name}</h1>
