@@ -18,6 +18,14 @@ Subs = new SubsManager();
 
 injectTapEventPlugin();
 
+this.App = {};
+
+//logout function
+App.logout = function() {
+	Meteor.logout(function(err) {
+	});
+};
+
 const publicRoutes = FlowRouter.group( { name: 'public' } );
 const authenticatedRoutes = FlowRouter.group( { 
     name: 'authenticated',
@@ -44,6 +52,14 @@ publicRoutes.route("/", {
   }
 });
 
+publicRoutes.route("/logout", {
+  name: 'logout',
+  action () {
+     App.logout(); // app logout see client.js
+		 FlowRouter.go("/");
+  }
+});
+
 
 authenticatedRoutes.route("/dashboard", {
   name: 'dashboard',
@@ -56,25 +72,25 @@ authenticatedRoutes.route("/dashboard", {
   }
 });
 
-FlowRouter.route("/avatar", {
+authenticatedRoutes.route("/avatar", {
    action: () => {
     mount(App, {content: () => ( <Avatars name="Al"/>)});
    }
 });
 
-FlowRouter.route("/badge", {
+authenticatedRoutes.route("/badge", {
    action: () => {
     mount(App, {content: () => ( <BadgePage name="Al"/>)});
    }
 });
 
-FlowRouter.route("/button", {
+authenticatedRoutes.route("/button", {
    action: () => {
     mount(App, {content: () => ( <ButtonPage name="Al"/>)});
    }
 });
 
-FlowRouter.notFound = {
+publicRoutes.notFound = {
   action () {
     mount(notfoundLayout, {
        content: () => (

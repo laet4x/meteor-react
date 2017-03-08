@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -65,13 +67,21 @@ import TextField from 'material-ui/TextField';
     btnSpan: {
       marginLeft: 5
     },
+    error: {
+      color: '#d40000',
+      textAlign: 'center'
+    }
   };
 
 
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {username: '',password: ''};
+    this.state = {
+      username: '',
+      password: '',
+      error: ''
+         };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -84,16 +94,28 @@ export default class LoginPage extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.username + this.state.password);
-    event.preventDefault();
+    event.preventDefault(); 
+    var username = this.state.username ;
+    var password = this.state.password;
+    Meteor.loginWithPassword(this.state.username, this.state.password, function(err) {
+			if (err)
+			{
+			  this.setState({error:"Invalid Credential"});
+        console.log(this.state.error);
+			}else {
+			 	console.log('Login Sucess');
+			  FlowRouter.go("/dashboard");
+			}
+		}.bind(this));
   }
 
   render() {
     return (
     <div style={styles.loginContainer}>
 
-          <Paper style={styles.paper}>
+          {this.state.error ? <p style={styles.error}>{this.state.error}</p> : null}
 
+          <Paper style={styles.paper}>
             <form onSubmit={this.handleSubmit}>
               <TextField
                 hintText="Username"
