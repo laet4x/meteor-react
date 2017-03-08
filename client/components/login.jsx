@@ -69,6 +69,24 @@ import TextField from 'material-ui/TextField';
 
 
 export default class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {username: '',password: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(name,event) {
+    var change = {};
+    change[name] = event.target.value;
+    console.log(change);
+    this.setState(change);
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.username + this.state.password);
+    event.preventDefault();
+  }
 
   render() {
     return (
@@ -76,17 +94,21 @@ export default class LoginPage extends Component {
 
           <Paper style={styles.paper}>
 
-            <form>
+            <form onSubmit={this.handleSubmit}>
               <TextField
-                hintText="E-mail"
-                floatingLabelText="E-mail"
+                hintText="Username"
+                floatingLabelText="Username"
                 fullWidth={true}
+                value={this.state.username} 
+                onChange={this.handleChange.bind(this,'username')}
               />
               <TextField
                 hintText="Password"
                 floatingLabelText="Password"
                 fullWidth={true}
                 type="password"
+                value={this.state.password}
+                onChange={this.handleChange.bind(this,'password')} 
               />
 
               <div>
@@ -96,12 +118,10 @@ export default class LoginPage extends Component {
                   labelStyle={styles.checkRemember.labelStyle}
                   iconStyle={styles.checkRemember.iconStyle}
                 />
-
-                <a href="/">
-                  <RaisedButton label="Login"
-                                primary={true}
-                                style={styles.loginBtn}/>
-                </a>
+                <RaisedButton label="Login"
+                              type="submit"
+                              primary={true}
+                              style={styles.loginBtn}/>
               </div>
             </form>
           </Paper>

@@ -23,3 +23,5 @@ twbs:bootstrap
 meteorhacks:subs-manager
 meteorhacks:fast-render
 accounts-base
+alanning:roles
+accounts-password@1.3.0

@@ -18,11 +18,23 @@ Subs = new SubsManager();
 
 injectTapEventPlugin();
 
+const publicRoutes = FlowRouter.group( { name: 'public' } );
+const authenticatedRoutes = FlowRouter.group( { 
+    name: 'authenticated',
+    triggersEnter: [function(context, redirect) {
+        if (!Meteor.userId()) {
+            console.log(context)
+            redirect('/');
+        }
+    }] 
+});
+
 //All these global subscriptions run on every route. So, pay special attention to names when registering subscriptions.
 /*FlowRouter.subscriptions = function() {
   this.register('myTodos', Subs.subscribe('todos'));
 };*/
-FlowRouter.route("/login", {
+publicRoutes.route("/", {
+  name: 'login',
   action () {
     mount(loginLayout, {
      content: () => (
@@ -33,7 +45,8 @@ FlowRouter.route("/login", {
 });
 
 
-FlowRouter.route("/", {
+authenticatedRoutes.route("/dashboard", {
+  name: 'dashboard',
   subscriptions: function(params, queryParams) {
       // using Fast Render
       this.register('myTodos', Subs.subscribe('todos'));

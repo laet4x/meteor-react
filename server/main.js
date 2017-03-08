@@ -1,10 +1,27 @@
 import { Meteor } from 'meteor/meteor';
 import Todos from '/imports/api/collection.js';
 
-
-Meteor.startup(() => {
- console.log('server running....');
+Meteor.startup(function () {
+  console.log('server running....');
+  addAdmin();
 });
+
+function addAdmin() {
+  if (Meteor.users.find().count() === 0) {
+    var user = {
+      name: "Admin User",
+      email: "admin@example.com",
+      roles: ['admin']
+    };
+    let id = Accounts.createUser({
+      email: user.email,
+      username: 'Administrator',
+      password: "AdminUser123!",
+      profile: { name: user.name }
+    });
+    Roles.addUsersToRoles(id, user.roles, 'default-group');
+  }
+}
 
 /*function select(query,callback)
 {
