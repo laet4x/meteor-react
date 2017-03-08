@@ -34,6 +34,8 @@ import CommunicationCall from 'material-ui/svg-icons/communication/call';
 import Message from 'material-ui/svg-icons/communication/message';
 
 import Snackbar from 'material-ui/Snackbar';
+import PageBase from './PageBase';
+import Helmet from "react-helmet";
 
 function handleTouchTap() {
   alert('onTouchTap triggered on the title component');
@@ -101,8 +103,15 @@ class Content extends Component {
   render() {
     const { todos, ready } = this.props;
     return (
+      <PageBase title="Content Page"
+             navigation="Application / Content Page">
+         <Helmet
+            title="Dashboard"
+            meta={[
+                {"name": "Content Page", "content": "Page Application"}
+                ]}
+            />
       <div>
-          <h1>Hello, {this.props.name}</h1>
           <Table>
               <TableHeader>
                 <TableRow>
@@ -144,6 +153,7 @@ class Content extends Component {
               onRequestClose={this.handleRequestClose}
             />
       </div>
+      </PageBase>
     );
   }
 

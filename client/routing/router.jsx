@@ -6,6 +6,7 @@ import {MainLayout} from '/client/layouts/mainLayout.jsx';
 import {notfoundLayout} from '/client/layouts/notfoundLayout.jsx';
 import loginLayout from '/client/layouts/loginLayout.jsx';
 import App from '/client/layouts/App.jsx';
+import FormPage from '/client/layouts/FormPage.jsx';
 
 import Content from '/client/components/content.jsx';
 import Avatars from '/client/components/avatar.jsx';
@@ -77,6 +78,13 @@ authenticatedRoutes.route("/avatar", {
     mount(App, {content: () => ( <Avatars name="Al"/>)});
    }
 });
+
+authenticatedRoutes.route("/form", {
+   action: () => {
+    mount(App, {content: () => ( <FormPage/>)});
+   }
+});
+
 
 authenticatedRoutes.route("/badge", {
    action: () => {
