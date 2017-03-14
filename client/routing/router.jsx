@@ -28,7 +28,7 @@ App.logout = function() {
 };
 
 const publicRoutes = FlowRouter.group( { name: 'public' } );
-const authenticatedRoutes = FlowRouter.group( { 
+const authenticatedRoutes = FlowRouter.group( {
     name: 'authenticated',
     triggersEnter: [function(context, redirect) {
         if (!Meteor.userId()) {
@@ -36,6 +36,9 @@ const authenticatedRoutes = FlowRouter.group( {
             redirect('/');
         }
     }] 
+});
+const postsRoutes = authenticatedRoutes.group( {
+    prefix: '/posts',
 });
 
 //All these global subscriptions run on every route. So, pay special attention to names when registering subscriptions.
@@ -93,6 +96,14 @@ authenticatedRoutes.route("/badge", {
 });
 
 authenticatedRoutes.route("/button", {
+   action: () => {
+    mount(App, {content: () => ( <ButtonPage name="Al"/>)});
+   }
+});
+
+
+
+postsRoutes.route("/add", {
    action: () => {
     mount(App, {content: () => ( <ButtonPage name="Al"/>)});
    }
