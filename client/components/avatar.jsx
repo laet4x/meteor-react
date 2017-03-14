@@ -16,7 +16,7 @@ import {
 
 const style = {margin: 5};
 
-export default class About extends Component {
+export default class Avatars extends Component {
 
   render() {
     return (
